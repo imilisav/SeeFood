@@ -6,7 +6,8 @@ function openQRCamera(node) {
       if(res instanceof Error) {
         alert("No SeeFood-QR code found. Make sure the QR code is the only thing in the camera frame.");
       } else {
-        //do something here to handle the url
+          //pass over the Unique Store ID
+          window.open("menu.php?USID=" + res);
       }
     };
     qrcode.decode(reader.result);
