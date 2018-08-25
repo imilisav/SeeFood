@@ -26,7 +26,7 @@ EOF;
 EOF;
     $ret = $db->query($sql);
     while($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        echo "<div class='mui-panel' onclick='scan_ar()'>
+        echo "<div class='mui-panel' onclick='scanAR(\"" . $row['umiid'] . "\")'>
             <h2>" . $row['name'] . "</h2>
             <p>" . $row['description'] . "</p>
         </div>";

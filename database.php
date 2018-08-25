@@ -5,11 +5,11 @@
       }
     }
 
-    //Error checking
-    $db = new DB();
-    if(!$db) {
-      echo $db->lastErrorMsg();
-    }
+//Error checking
+$db = new DB();
+if(!$db) {
+  echo $db->lastErrorMsg();
+}
 
 // ================= CREATE THE TABLES ---- NEED ONLY FOR INIT ================
 //    $sql =<<<EOF
@@ -68,4 +68,26 @@
     //    echo "menuitems Table created successfully\n";
     // }
 
-    $db->close();
+// $sql =<<<EOF
+//     UPDATE MenuItems SET object_path = "10_inch_pizza.obj" WHERE id=1;
+//     UPDATE MenuItems SET object_path = "wedding_cake.obj" WHERE id=2;
+// EOF;
+//
+// $ret = $db->exec($sql);
+// if(!$ret){
+//    echo $db->lastErrorMsg();
+// } else {
+//    echo "menuitems Table updated successfully\n";
+// }
+
+// $umiid = "8e894756-54fe-4ad0-8922-f4cf5dce2b57";
+// $sql =<<<EOF
+//   SELECT * FROM MenuItems WHERE umiid="$umiid";
+// EOF;
+//
+// $return = $db->exec($sql);
+// while($row = $return->fetchArray(SQLITE3_ASSOC)) {
+//     echo $row['object_path'];
+// }
+
+$db->close();

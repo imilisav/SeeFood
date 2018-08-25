@@ -56,3 +56,10 @@ html, body {
 #menu-content div h2 {
     margin-top: 0;
 }
+
+#ar-content {
+    height: 100%;
+    background-color: #39a1f4;
+    color: white;
+    padding: 1rem;
+}

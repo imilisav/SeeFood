@@ -14,3 +14,7 @@ function openQRCamera(node) {
   };
   reader.readAsDataURL(node.files[0]);
 }
+
+function scanAR(umiid) {
+    location.href = "ar.php?umiid=" + umiid;
+}
