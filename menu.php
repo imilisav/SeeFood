@@ -1,6 +1,7 @@
 <?php include("base.html") ?>
 <?php include("database.php") ?>
 
+<div id="menu-content">
 <?php
     // Get the database object
     $db = new DB;
@@ -9,19 +10,26 @@
     }
 
     // Get the store name, enforce it to be only one store name
-    $sql = "SELECT DISTINCT store_name FROM stores WHERE USID='".pg_escape_string($_GET['USID'])."'";
-    $ret = $db->query($sql);
-    $store_name = "";
-    while($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        $store_name = $row['store_name'];
-    }
-
-    // Get the items from the menu
-    $sql = "SELECT * FROM MenuItems WHERE USID='".pg_escape_string($_GET['USID'])."'";
+    $usid = $_GET['usid'];
+    $sql =<<<EOF
+      SELECT name FROM Restaurants WHERE usid="$usid";
+EOF;
     $ret = $db->query($sql);
     while($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        //get the menu items...
+        echo "<h1>" . $row['name'] . "&nbsp;Menu</h1>";
     }
-
 ?>
-<h1> {{ Store }} Menu </h1>
+<?php
+    // Get the items from the menu
+    $sql =<<<EOF
+      SELECT * FROM MenuItems WHERE usid="$usid";
+EOF;
+    $ret = $db->query($sql);
+    while($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+        echo "<div class='mui-panel' onclick='scan_ar()'>
+            <h2>" . $row['name'] . "</h2>
+            <p>" . $row['description'] . "</p>
+        </div>";
+    }
+?>
+</div>
